@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * Implements hook_cron().
+ */
+function unpublish_events_cron_cron() {
+  // Ajouter les événements expirés à la queue pour traitement.
+  unpublish_events_cron_add_expired_events_to_queue();
+}
+
+/**
+ * Adds expired events to the queue for unpublishing.
+ */
+function unpublish_events_cron_add_expired_events_to_queue() {
+  $queue = \Drupal::service('queue')->get('unpublish_expired_events');
+
+  $query = \Drupal::entityQuery('node')
+    ->accessCheck(TRUE)
+    ->condition('type', 'event')
+    ->condition('status', 1)
+    ->condition('field_date_range.end_value', date('Y-m-d H:i:s'), '<');
+
+  $nids = $query->execute();
+
+  foreach ($nids as $nid) {
+    $queue->createItem(['nid' => $nid]);
+  }
+}

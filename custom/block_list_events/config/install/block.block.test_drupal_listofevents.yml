@@ -1,0 +1,28 @@
+uuid: 15156ae0-72d8-4e88-8984-efa8787c985e
+langcode: fr
+status: true
+dependencies:
+  module:
+    - block_list_events
+    - node
+  theme:
+    - test_drupal
+id: test_drupal_listofevents
+theme: test_drupal
+region: content
+weight: -2
+provider: null
+plugin: block_list_events_example
+settings:
+  id: block_list_events_example
+  label: 'List of events'
+  label_display: visible
+  provider: block_list_events
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      event: event

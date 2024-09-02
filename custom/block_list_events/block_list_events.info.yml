@@ -1,0 +1,8 @@
+name: Block list events
+type: module
+description: A module to list events in block.
+package: Custom
+core_version_requirement: ^9 || ^10
+dependencies:
+  - taxonomy
+  - node

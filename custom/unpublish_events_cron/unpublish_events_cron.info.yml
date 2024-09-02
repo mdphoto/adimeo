@@ -1,0 +1,9 @@
+name: 'Unpublish Events Cron'
+type: module
+description: 'A module to unpublish expired events using a QueueWorker.'
+core_version_requirement: ^10
+package: Custom
+dependencies:
+  - drupal:node
+  - drupal:taxonomy
+  - drupal:field

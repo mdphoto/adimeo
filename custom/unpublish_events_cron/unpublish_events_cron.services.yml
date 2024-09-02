@@ -1,0 +1,5 @@
+services:
+  unpublish_events_cron.queue_worker.unpublish_expired_events:
+    class: Drupal\unpublish_events_cron\Plugin\QueueWorker\UnpublishExpiredEvents
+    tags:
+      - { name: queue_worker, title: "Unpublish expired events", cron: "60" }
